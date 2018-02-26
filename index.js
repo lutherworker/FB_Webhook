@@ -1,4 +1,3 @@
-/*
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
@@ -9,10 +8,10 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
-*/
 
 //=============================== Dividers Line ===============================
 
+/*
 'use strict';
 
 // Imports dependencies and set up http server
@@ -23,6 +22,7 @@ const
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
+*/
 
 
 
@@ -64,7 +64,7 @@ app.post('/webhook', (req, res) => {
 app.get('/webhook', (req, res) => {
 
   // Your verify token. Should be a random string.
-  let VERIFY_TOKEN = "<YOUR_VERIFY_TOKEN>"
+  let VERIFY_TOKEN = "abcd"
     
   // Parse the query params
   let mode = req.query['hub.mode'];
