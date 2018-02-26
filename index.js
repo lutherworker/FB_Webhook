@@ -1,3 +1,4 @@
+/*
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
@@ -8,6 +9,23 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+*/
+
+//=============================== Dividers Line ===============================
+
+const
+  express = require('express'),
+  path = require('path'), 
+  const PORT = process.env.PORT || 5000, 
+  bodyParser = require('body-parser'),
+  app = express().use(bodyParser.json()); // creates express http server
+
+// Sets server port and logs message on success
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.get('/', (req, res) => res.render('pages/index'));
+app.listen(PORT || 5000, () => console.log('webhook is listening'));
 
 //=============================== Dividers Line ===============================
 
@@ -52,12 +70,9 @@ app.post('/webhook', (req, res) => {
   }
 
 });
-
 */
 
-
-
-
+//=============================== Dividers Line ===============================
 
 /*
 // Adds support for GET requests to our webhook
