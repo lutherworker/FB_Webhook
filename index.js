@@ -13,19 +13,29 @@ express()
 
 //=============================== Dividers Line ===============================
 
-const
-  express = require('express'),
-  path = require('path'), 
-  const PORT = process.env.PORT || 5000, 
-  bodyParser = require('body-parser'),
-  app = express().use(bodyParser.json()); // creates express http server
+var express = require('express');
+var app = express();
 
-// Sets server port and logs message on success
-app.use(express.static(path.join(__dirname, 'public')));
-app.set('views', path.join(__dirname, 'views'));
+app.set('port', (process.env.PORT || 5000));
+app.use(express.static(__dirname + '/public'));
+
+// views is directory for all template files
+app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.get('/', (req, res) => res.render('pages/index'));
-app.listen(PORT || 5000, () => console.log('webhook is listening'));
+
+app.get('/', function(request, response) {
+  response.render('pages/index')
+});
+
+/*
+app.get('/webhook', function(request, response) {
+  response.send(cool());
+});
+*/
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
 
 //=============================== Dividers Line ===============================
 
