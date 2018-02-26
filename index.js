@@ -27,11 +27,9 @@ app.get('/', function(request, response) {
   response.render('pages/index')
 });
 
-/*
 app.get('/webhook', function(request, response) {
-  response.send(cool());
+  console.log('My WEBHOOK_VERIFIED Done.....');
 });
-*/
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
