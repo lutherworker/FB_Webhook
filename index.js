@@ -15,6 +15,10 @@ express()
 
 var express = require('express');
 var app = express();
+var bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
@@ -27,8 +31,22 @@ app.get('/', function(request, response) {
   response.render('pages/index')
 });
 
+/*
 app.get('/webhook', function(request, response) {
   console.log('My WEBHOOK_VERIFIED Done.....');
+});
+*/
+
+// Facebook Webhook
+// Used for verification
+app.get("/webhook", function (req, res) {
+  if (req.query["hub.verify_token"] === "this_is_my_token") {
+    console.log("Verified webhook");
+    res.status(200).send(req.query["hub.challenge"]);
+  } else {
+    console.error("Verification failed. The tokens do not match.");
+    res.sendStatus(403);
+  }
 });
 
 app.listen(app.get('port'), function() {
