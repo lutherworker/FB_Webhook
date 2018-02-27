@@ -81,7 +81,14 @@ app.listen(app.get('port'), function() {
 
 app.post("/webhook", function (req, res) {
   let body = req.body;
+  
+  if (body.object === 'page') {
+    res.status(200).send('EVENT_RECEIVED for page');
+  } else {
+    res.status(200).send('EVENT_RECEIVED for not page');
+  }
 
+  /*
   // Checks this is an event from a page subscription
   if (body.object === 'page') {
 
@@ -100,6 +107,7 @@ app.post("/webhook", function (req, res) {
     // Returns a '404 Not Found' if event is not from a page subscription
     res.sendStatus(404);
   }
+  */
 });
 
 //=============================== Dividers Line ===============================
