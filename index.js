@@ -80,9 +80,9 @@ app.listen(app.get('port'), function() {
 });
 
 app.post("/webhook", function (req, res) {
-  let body = req.body;
+  //let body = req.body;
   
-  if (body.object === 'page') {
+  if (req.body.object == "page") {
     res.status(200).send('EVENT_RECEIVED for page');
   } else {
     res.status(200).send('EVENT_RECEIVED for not page');
